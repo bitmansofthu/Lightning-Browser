@@ -1,5 +1,10 @@
 # Lightning Browser [![Build Status](https://travis-ci.org/anthonycr/Lightning-Browser.svg?branch=master)](https://travis-ci.org/anthonycr/Lightning-Browser)
 
+Added forward/back buttons on the left side of search bar for better usage on tablet.
+The buttons automatically show/hide.
+
+Changed icon to easily recognize version.
+
 #### Speed, Simplicity, Security
 ![](ic_launcher_small.png)
 
