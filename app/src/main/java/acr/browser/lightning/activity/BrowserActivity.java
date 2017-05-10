@@ -141,6 +141,9 @@ public abstract class BrowserActivity extends ThemableBrowserActivity implements
     @BindView(R.id.progress_view) AnimatedProgressBar mProgressBar;
     @BindView(R.id.search_bar) RelativeLayout mSearchBar;
 
+    private ImageView mBackButton;
+    private ImageView mForwardButton;
+
     // Toolbar Views
     @BindView(R.id.toolbar) Toolbar mToolbar;
     private View mSearchBackground;
@@ -326,6 +329,35 @@ public abstract class BrowserActivity extends ThemableBrowserActivity implements
         customView.setLayoutParams(lp);
 
         mArrowImage = (ImageView) customView.findViewById(R.id.arrow);
+
+        mBackButton = (ImageView) customView.findViewById(R.id.back_button);
+        mForwardButton = (ImageView) customView.findViewById(R.id.forward_button);
+
+        mBackButton.getDrawable().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
+        mForwardButton.getDrawable().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
+
+        mBackButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final LightningView currentView = mTabsManager.getCurrentTab();
+
+                if (currentView != null && currentView.canGoBack()) {
+                    currentView.goBack();
+                }
+            }
+        });
+
+        mForwardButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final LightningView currentView = mTabsManager.getCurrentTab();
+
+                if (currentView != null && currentView.canGoForward()) {
+                    currentView.goForward();
+                }
+            }
+        });
+
         FrameLayout arrowButton = (FrameLayout) customView.findViewById(R.id.arrow_button);
         if (mShowTabsInDrawer) {
             if (mArrowImage.getWidth() <= 0) {
@@ -1659,43 +1691,34 @@ public abstract class BrowserActivity extends ThemableBrowserActivity implements
 
     @Override
     public void setForwardButtonEnabled(boolean enabled) {
-        if (mForwardMenuItem != null && mForwardMenuItem.getIcon() != null) {
-            int colorFilter;
-            if (enabled) {
-                colorFilter = mIconColor;
-            } else {
-                colorFilter = mDisabledIconColor;
-            }
-            mForwardMenuItem.getIcon().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
-            mForwardMenuItem.setIcon(mForwardMenuItem.getIcon());
-        }
+//        int colorFilter;
+//        if (enabled) {
+//            colorFilter = mIconColor;
+//        } else {
+//            colorFilter = mDisabledIconColor;
+//        }
+//        mForwardButton.getDrawable().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
+//        mForwardButton.setImageDrawable(mForwardButton.getDrawable());
+
+        mForwardButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public void setBackButtonEnabled(boolean enabled) {
-        if (mBackMenuItem != null && mBackMenuItem.getIcon() != null) {
-            int colorFilter;
-            if (enabled) {
-                colorFilter = mIconColor;
-            } else {
-                colorFilter = mDisabledIconColor;
-            }
-            mBackMenuItem.getIcon().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
-            mBackMenuItem.setIcon(mBackMenuItem.getIcon());
-        }
-    }
+//        int colorFilter;
+//        if (enabled) {
+//            colorFilter = mIconColor;
+//        } else {
+//            colorFilter = mDisabledIconColor;
+//        }
+//        mBackButton.getDrawable().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
+//        mBackButton.setImageDrawable(mBackButton.getDrawable());
 
-    private MenuItem mBackMenuItem;
-    private MenuItem mForwardMenuItem;
+        mBackButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mBackMenuItem = menu.findItem(R.id.action_back);
-        mForwardMenuItem = menu.findItem(R.id.action_forward);
-        if (mBackMenuItem != null && mBackMenuItem.getIcon() != null)
-            mBackMenuItem.getIcon().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
-        if (mForwardMenuItem != null && mForwardMenuItem.getIcon() != null)
-            mForwardMenuItem.getIcon().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
         return super.onCreateOptionsMenu(menu);
     }
 
