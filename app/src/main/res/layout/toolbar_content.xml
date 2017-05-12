@@ -20,40 +20,6 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingRight="5dp"
-        android:background="?attr/actionBarItemBackground"
-        android:clickable="true"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_action_back"
-            android:visibility="gone" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingRight="5dp"
-        android:background="?attr/actionBarItemBackground"
-        android:clickable="true"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/forward_button"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_action_forward"
-            android:visibility="gone" />
-    </FrameLayout>
-
     <include layout="@layout/search" />
 
 </LinearLayout>

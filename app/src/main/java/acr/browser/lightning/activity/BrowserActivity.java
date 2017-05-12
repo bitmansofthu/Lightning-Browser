@@ -333,30 +333,35 @@ public abstract class BrowserActivity extends ThemableBrowserActivity implements
         mBackButton = (ImageView) customView.findViewById(R.id.back_button);
         mForwardButton = (ImageView) customView.findViewById(R.id.forward_button);
 
-        mBackButton.getDrawable().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
-        mForwardButton.getDrawable().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
+        if (mBackButton != null) {
+            mBackButton.getDrawable().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
 
-        mBackButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final LightningView currentView = mTabsManager.getCurrentTab();
+            mBackButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final LightningView currentView = mTabsManager.getCurrentTab();
 
-                if (currentView != null && currentView.canGoBack()) {
-                    currentView.goBack();
+                    if (currentView != null && currentView.canGoBack()) {
+                        currentView.goBack();
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        mForwardButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final LightningView currentView = mTabsManager.getCurrentTab();
+        if (mForwardButton != null) {
+            mForwardButton.getDrawable().setColorFilter(mIconColor, PorterDuff.Mode.SRC_IN);
 
-                if (currentView != null && currentView.canGoForward()) {
-                    currentView.goForward();
+            mForwardButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final LightningView currentView = mTabsManager.getCurrentTab();
+
+                    if (currentView != null && currentView.canGoForward()) {
+                        currentView.goForward();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         FrameLayout arrowButton = (FrameLayout) customView.findViewById(R.id.arrow_button);
         if (mShowTabsInDrawer) {
@@ -1691,30 +1696,32 @@ public abstract class BrowserActivity extends ThemableBrowserActivity implements
 
     @Override
     public void setForwardButtonEnabled(boolean enabled) {
-//        int colorFilter;
-//        if (enabled) {
-//            colorFilter = mIconColor;
-//        } else {
-//            colorFilter = mDisabledIconColor;
-//        }
-//        mForwardButton.getDrawable().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
-//        mForwardButton.setImageDrawable(mForwardButton.getDrawable());
+        int colorFilter;
+        if (enabled) {
+            colorFilter = mIconColor;
+        } else {
+            colorFilter = mDisabledIconColor;
+        }
 
-        mForwardButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+        if (mForwardButton != null) {
+            mForwardButton.getDrawable().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
+            mForwardButton.setImageDrawable(mForwardButton.getDrawable());
+        }
     }
 
     @Override
     public void setBackButtonEnabled(boolean enabled) {
-//        int colorFilter;
-//        if (enabled) {
-//            colorFilter = mIconColor;
-//        } else {
-//            colorFilter = mDisabledIconColor;
-//        }
-//        mBackButton.getDrawable().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
-//        mBackButton.setImageDrawable(mBackButton.getDrawable());
+        int colorFilter;
+        if (enabled) {
+            colorFilter = mIconColor;
+        } else {
+            colorFilter = mDisabledIconColor;
+        }
 
-        mBackButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+        if (mBackButton != null) {
+            mBackButton.getDrawable().setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
+            mBackButton.setImageDrawable(mBackButton.getDrawable());
+        }
     }
 
     @Override

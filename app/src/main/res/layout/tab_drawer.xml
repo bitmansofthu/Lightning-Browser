@@ -7,12 +7,11 @@
     android:clickable="true"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/dividerColor"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:gravity="center_vertical">
 
         <FrameLayout
             android:id="@+id/tab_header_button"
@@ -34,13 +33,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/tab_header_button"
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:minHeight="?android:attr/listPreferredItemHeight"
             android:text="@string/tabs"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
-    </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/new_tab_button"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="?attr/actionBarItemBackground"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/icon_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/action_new_tab"
+                app:srcCompat="@drawable/ic_action_plus"/>
+        </FrameLayout>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tabs_list"
@@ -57,7 +74,7 @@
         android:background="?attr/dividerColor"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="3">
 
         <FrameLayout
             android:id="@+id/action_back"
@@ -108,23 +125,6 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/action_forward"
                 app:srcCompat="@drawable/ic_action_forward"/>
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/new_tab_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/actionBarItemBackground"
-            android:clickable="true">
-
-            <ImageView
-                android:id="@+id/icon_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/action_new_tab"
-                app:srcCompat="@drawable/ic_action_plus"/>
         </FrameLayout>
     </LinearLayout>
 

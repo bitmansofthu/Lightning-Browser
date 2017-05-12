@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:id="@+id/arrow_button"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:background="?attr/actionBarItemBackground"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:paddingRight="5dp"
+        android:background="?attr/actionBarItemBackground"
+        android:clickable="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_back" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:paddingRight="5dp"
+        android:background="?attr/actionBarItemBackground"
+        android:clickable="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/forward_button"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_forward" />
+    </FrameLayout>
+
+    <include layout="@layout/search" />
+
+</LinearLayout>
